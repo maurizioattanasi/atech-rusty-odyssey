@@ -2,5 +2,6 @@
 name = "atech-rusty-odyssey"
 version = "0.1.0"
 edition = "2021"
+authors = ["maurizio.attanasi@gmail.com"]
 
 [dependencies]
