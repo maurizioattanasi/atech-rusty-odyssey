@@ -1,38 +1,21 @@
-use rand::Rng;
-use std::cmp::Ordering;
-use std::io;
 
 fn main() {
-    println!("Guess the number!");
+    let s = String::from("Hello, world!");
 
-    let secret_number = rand::thread_rng().gen_range(1..101);
+    take_ownership(s);
 
-    loop {
-        println!("Please input your guess between 1 and 100:");
-        let mut guess = String::new();
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line");
+    let i: i32 = 42;
 
-        // rust allows shadowing variables, so we can reuse guess for the parsed value
-        let guess: u32 = guess.trim().parse().expect("Not a valid number");
+    makes_copy(i);
 
-        println!("You guessed: {}", guess);
-
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small! Try again."),
-            Ordering::Greater => println!("Too big! Try again."),
-            Ordering::Equal => {
-                println!("You won! The secret number was {}", secret_number);
-                break;
-            }
-        }
-    }
-
-    // if guessed_number == secret_number  {
-    //     println!("you won! The secret number was {}", secret_number);
-    // }
-    // else {
-    //     println!("you failed! The secret number was {}", secret_number);
-    // }
+    println!("{}", i);
 }
+
+fn take_ownership(s: String) {
+    println!("{} has been moved", s);
+}
+
+fn makes_copy(i: i32) {
+    println!("{} has been copied", i);
+}
+
